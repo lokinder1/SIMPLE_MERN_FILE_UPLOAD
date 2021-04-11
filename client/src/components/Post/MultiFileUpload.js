@@ -1,21 +1,17 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { Progress } from "reactstrap";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { makeStyles } from "@material-ui/core/styles";
+import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
+import LinearProgress from "@material-ui/core/LinearProgress";
+import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
-import LinearProgress from '@material-ui/core/LinearProgress';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import PropTypes from 'prop-types';
-
+import axios from "axios";
+import PropTypes from "prop-types";
+import React, { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const useStyles = makeStyles(() => ({
-  root: {
-
-  },
+  root: { margin: "20px", padding: "10px" },
   main: {
     padding: " 50px !important",
     display: "flex",
@@ -40,7 +36,7 @@ const checkMimeType = (event) => {
   // list allow mime type
   const types = ["image/png", "image/jpeg", "image/gif"];
   // loop access array
-  for (var x = 0; x < files.length; x++) {
+  for (let x = 0; x < files.length; x++) {
     // compare file type find doesn't matach
     if (types.every((type) => files[x].type !== type)) {
       // create error message and assign to container
@@ -57,7 +53,7 @@ const checkMimeType = (event) => {
 };
 const maxSelectFile = (event) => {
   let files = event.target.files;
-  if (files.length >= 3) {
+  if (files.length > 3) {
     const msg = "Only 3 images can be uploaded at a time";
     event.target.value = null;
     toast.warn(msg);
@@ -83,16 +79,6 @@ const checkFileSize = (event) => {
   return true;
 };
 
-
-
-
-
-
-
-
-
-
-
 /**
  * Component to handle file upload. Works for image
  * uploads, but can be edited to work for any file.
@@ -109,7 +95,6 @@ export default function MultiFileUpload() {
     if (maxSelectFile(event) && checkMimeType(event) && checkFileSize(event)) {
       setFiles(event.target.files);
     }
-
   }
 
   function LinearProgressWithLabel(props) {
@@ -120,7 +105,7 @@ export default function MultiFileUpload() {
         </Box>
         <Box minWidth={35}>
           <Typography variant="body2" color="textSecondary">{`${Math.round(
-            props.value,
+            props.value
           )}%`}</Typography>
         </Box>
       </Box>
@@ -134,7 +119,6 @@ export default function MultiFileUpload() {
      */
     value: PropTypes.number.isRequired,
   };
-  
 
   // Handles file upload event and updates state
   function handleSubmit(event) {
@@ -161,6 +145,8 @@ export default function MultiFileUpload() {
   }
   return (
     <div className={classes.root}>
+      <h2>Multi Image Files</h2>
+
       <div className={classes.main}>
         <ToastContainer />
         <Button
@@ -182,12 +168,12 @@ export default function MultiFileUpload() {
         </Button>
         {/* <input type="submit" onClick={handleSubmit} /> */}
       </div>
-        <div className={classes.fileInfo}>
+      <div className={classes.fileInfo}>
         <LinearProgressWithLabel value={loaded} />
-          {/* <Progress max="100" color="success" value={loaded}>
+        {/* <Progress max="100" color="success" value={loaded}>
             {Math.round(loaded, 2)}%
           </Progress> */}
-        </div>
+      </div>
     </div>
   );
 }

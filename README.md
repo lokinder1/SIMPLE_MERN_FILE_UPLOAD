@@ -1,13 +1,15 @@
 # SIMPLE_MERN_FILE_UPLOAD
+
 It's a simple example or demo project to show file upload operations
 it's made by using following technologies
+
 - ReactJS
 - NodeJS
-- MongoDB
 - ExpressJS
 - MaterialUI
 
-## How To Run 
+## How To Run
+
 ```
 - Server
     1. Move To Server Directory
@@ -17,9 +19,9 @@ it's made by using following technologies
     yarn
 
     3. start Server App
-    nodemon src/server.js 
+    nodemon src/server.js
 
-- Client    
+- Client
 
     1. Move To Client Directory
     cd Client/
@@ -30,3 +32,18 @@ it's made by using following technologies
     3. start Server App
     yarn start
 ```
+
+## Tasks Completed
+
+1. Homepage
+2. Single Image Component
+3. Multi Image Component
+4. Basic Server to handle Image files
+
+## Demo ScreenShots
+
+- Single Image File
+  ![single](single.png)
+
+- Multi Image Files
+  ![multi](multi.png)
